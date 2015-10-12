@@ -64,7 +64,6 @@ var app = {
         function checkIsAllMainImagesLoaded () {
             if (isLoaded == false) {
                 var loadedRate = 0.80;
-                console.log(loadedAmounts / imgAmounts);
                 return loadedAmounts / imgAmounts >= loadedRate;
             }
         }
@@ -78,6 +77,7 @@ var app = {
 
                 setTimeout(function () {
                     $('.loading').addClass('leaved');
+                    $('.scene').addClass('loaded');
                 }, 1200);
             }, 1500);
         }
