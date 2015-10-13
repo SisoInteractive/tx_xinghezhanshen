@@ -158,8 +158,8 @@ input {
   left: 0;
   right: 0;
   top: 309px;
-  -webkit-animation: flash 1s forwards infinite;
-          animation: flash 1s forwards infinite;
+  -webkit-animation: down 1.3s forwards infinite;
+          animation: down 1.3s forwards infinite;
 }
 .scene footer .leftLine {
   top: 170px;
@@ -319,6 +319,11 @@ input {
 .scene04 .qrcode img {
   vertical-align: top;
 }
+.scene04 .replay {
+  bottom: 10px;
+  z-index: 999;
+  right: 14px;
+}
 .scene04 .official01 {
   top: 25px;
   right: 25px;
@@ -426,6 +431,30 @@ input {
   }
   100% {
     opacity: .3;
+  }
+}
+@-webkit-keyframes down {
+  0% {
+    -webkit-transform: translate3d(0, -35px, 0) scale(1.2, 1.2);
+            transform: translate3d(0, -35px, 0) scale(1.2, 1.2);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0) scale(1, 1);
+            transform: translate3d(0, 0, 0) scale(1, 1);
+    opacity: .0;
+  }
+}
+@keyframes down {
+  0% {
+    -webkit-transform: translate3d(0, -35px, 0) scale(1.2, 1.2);
+            transform: translate3d(0, -35px, 0) scale(1.2, 1.2);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0) scale(1, 1);
+            transform: translate3d(0, 0, 0) scale(1, 1);
+    opacity: .0;
   }
 }
 /*======================================================================

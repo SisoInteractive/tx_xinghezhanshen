@@ -10,18 +10,30 @@ document.addEventListener('touchmove', function (e) {
 var app = {
     preload: function () {
         var that = this;
-
         var imgArr = document.getElementsByTagName('img');
         var imgAmounts = 0;
         var loadedAmounts = 0;
         var isLoaded = false;
-
         //  get img amounts
         for (var i = 0; i < imgArr.length; i++) {
             if (imgArr[i].hasAttribute('lazy-src')) {
                 imgAmounts++;
             }
         }
+
+        //loading music
+        var musicloaded = true;
+        //var music=document.getElementById("music");
+        //music.onloadeddata = function() {
+        //    alert()
+        //    console.log("Browser has loaded the current frame");
+        //}
+        //music.addEventListener("loadeddata", function(){
+        //    musicloaded = true;
+        //    if (checkIsAllMainImagesLoaded() && isLoaded == false ) {
+        //        goMainProcess();
+        //    };
+        //});
 
         //  load each img
         for (var i = 0; i < imgArr.length; i++) {
@@ -36,14 +48,13 @@ var app = {
                     loadedAmounts++;
                     imgArr[this.index].src = this.src;
                     /* check img load progress */
-                    if (checkIsAllMainImagesLoaded() && isLoaded == false) {
+                    if (checkIsAllMainImagesLoaded() && isLoaded == false && musicloaded ) {
                         goMainProcess();
                     }
                 };
 
                 img.onerror = function (error) {
                     imgAmounts -= 1;
-
                     /* check img load progress */
                     if (checkIsAllMainImagesLoaded() && isLoaded == false) {
                         goMainProcess();
@@ -70,6 +81,7 @@ var app = {
 
         function goMainProcess () {
             clearInterval(dotAnimation);
+            isLoaded = true;
             app.start();
 
             setTimeout(function () {
@@ -87,11 +99,9 @@ var app = {
     create: function (){
         app.mySwiper = new Swiper ('.swiper-container', {
             direction: 'vertical',
-
             // init
             onInit: function () {
             },
-
             onTransitionStart: function (swiper) {
             },
 
@@ -101,12 +111,22 @@ var app = {
 
         app.mySwiper.lockSwipes();
 
+        $('.botton').click(function(){
+            $('#music')[0].play();
+        })
+
+        $('.replay').on('touchend',function(){
+            console.log(app.mySwiper)
+            app.mySwiper.unlockSwipes();
+            app.mySwiper.slideTo(0, 100, false);
+            app.mySwiper.lockSwipes();
+        })
+
         //  play video when click play button
         $('.scene .triangle').each(function (index) {
             var that = $(this);
             var scene = that.parents('.scene');
             var video = scene.find('video');
-
             ////  remove video controls
             //if (video[0].hasAttribute("controls")) {
             //    video[0].removeAttribute("controls")
@@ -119,6 +139,7 @@ var app = {
             //  bind play video
             that.on('touchend', function () {
                 if (canPlay == true) {
+                    $('#music')[0].play();
                     var scene = that.parents('.scene');
                     scene.addClass('active');
                     $('.bottom').removeClass('bottom01 bottom02 bottom03').addClass('bottom0' + (index+1));
@@ -127,7 +148,6 @@ var app = {
                     setTimeout(function () {
                         scene.addClass('played');
                         $('.bottom').addClass('played');
-
                         scene.find('video')[0].play();
                     }, 1100);
 
@@ -143,6 +163,10 @@ var app = {
                 var video = scene.find('video');
                 var videoTemp = video[0].outerHTML;
 
+                //paly audeo
+                $('#music')[0].pause();
+                $('#music')[0].play();
+
                 //  remove video target
                 video.remove();
 
@@ -153,9 +177,8 @@ var app = {
 
                     setTimeout(function () {
                         app.mySwiper.unlockSwipes();
-                        app.mySwiper.slideTo(index+1, 1000, false);
+                        app.mySwiper.slideTo(index+1, 300, false);
                         app.mySwiper.lockSwipes();
-
                         if (index == 2) { $('.bottom').fadeOut(); }
 
                         setTimeout(function () {
@@ -166,9 +189,12 @@ var app = {
                             that.parents('.scene').find('video').on('ended', videoPlayEndHandler);
 
                         }, 1100);
-                    }, 2300);
+                    }, 2000);
                 }, 400);
-            }
+            };
+
+
+
         });
     },
 
@@ -180,7 +206,6 @@ var app = {
 $(function (){
     // init app
     app.preload();
-    app.start();
     console.log('app started success...');
 
     //setTimeout(function () {
