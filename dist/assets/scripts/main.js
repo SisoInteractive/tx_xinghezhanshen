@@ -61,7 +61,11 @@ var app = {
         function checkIsAllMainImagesLoaded () {
             if (isLoaded == false) {
                 var loadedRate = 0.9;
-                $('.loading .dot').text( parseInt(loadedAmounts / imgAmounts * 100)  + '%' );
+                if(parseInt(loadedAmounts / imgAmounts * 100) == 90 ){
+                    $('.loading .dot').text( '100%' );
+                }else{
+                    $('.loading .dot').text( parseInt(loadedAmounts / imgAmounts * 100)  + '%' );
+                }
                 return loadedAmounts / imgAmounts >= loadedRate;
             }
         }
