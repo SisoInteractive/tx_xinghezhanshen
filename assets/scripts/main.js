@@ -90,14 +90,15 @@ var app = {
             onInit: function () {
             },
             onTransitionStart: function (swiper) {
-                activeIndex = swiper.activeIndex;
+                activeIndex = swiper.previousIndex;
             },
 
             onTransitionEnd: function (swiper) {
                 if( activeIndex != swiper.activeIndex ){
                     app.mySwiper.lockSwipes();
-                    that.siblings('.pointer').hide();
+                     $('.pointer').hide();
                 }
+                $('.triangle').removeClass('end-paly');
 
             }
         });
