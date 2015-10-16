@@ -67,6 +67,7 @@ input {
 .loading .text .dot {
   position: relative;
   top: -3px;
+  color: #d0c0c0;
 }
 .loading.leave {
   opacity: 0;

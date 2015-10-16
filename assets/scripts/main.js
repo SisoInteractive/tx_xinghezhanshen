@@ -50,23 +50,23 @@ var app = {
         }
 
         //  dot animation
-        var dotAmount = 0;
-        var dot = ['', '.', '..', '...'];
-
-        var dotAnimation = setInterval(function () {
-            $('.loading .dot').text(dot[dotAmount]);
-            (dotAmount + 1) > 3 ? dotAmount = 0 : dotAmount++;
-        }, 500);
+        //var dotAmount = 0;
+        //var dot = ['', '.', '..', '...'];
+        //
+        //var dotAnimation = setInterval(function () {
+        //    $('.loading .dot').text(dot[dotAmount]);
+        //    (dotAmount + 1) > 3 ? dotAmount = 0 : dotAmount++;
+        //}, 500);
 
         function checkIsAllMainImagesLoaded () {
             if (isLoaded == false) {
-                var loadedRate = 0.80;
+                var loadedRate = 0.9;
+                $('.loading .dot').text( parseInt(loadedAmounts / imgAmounts * 100)  + '%' );
                 return loadedAmounts / imgAmounts >= loadedRate;
             }
         }
 
         function goMainProcess () {
-            clearInterval(dotAnimation);
             isLoaded = true;
             app.start();
 
