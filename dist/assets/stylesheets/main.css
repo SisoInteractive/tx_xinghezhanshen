@@ -179,19 +179,17 @@ input {
   -webkit-animation: left 1s forwards infinite;
           animation: left 1s forwards infinite;
 }
-.scene footer .triangle img:nth-child(4) {
-  top: 20px;
+.scene footer .pointer {
+  position: absolute;
+  top: 329px;
+  z-index: 999;
   left: 162px;
-  opacity: 0;
-}
-.scene footer .end-paly.triangle img {
   display: none;
-}
-.scene footer .end-paly.triangle img:nth-child(4) {
-  opacity: 1;
-  display: block;
   -webkit-animation: down 1s infinite;
           animation: down 1s infinite;
+}
+.scene footer .end-paly.triangle {
+  display: none;
 }
 .scene footer .leftLine {
   top: 170px;
@@ -255,8 +253,8 @@ input {
 .swiper-slide-active .triangle {
   -webkit-animation: fadeIn 3s forwards 1;
           animation: fadeIn 3s forwards 1;
-  -webkit-animation-delay: 1s;
-          animation-delay: 1s;
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
 }
 .triangle {
   position: relative;

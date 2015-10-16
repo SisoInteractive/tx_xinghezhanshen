@@ -83,16 +83,22 @@ var app = {
 
 
     create: function (){
+        var activeIndex;
         app.mySwiper = new Swiper ('.swiper-container', {
             direction: 'vertical',
             // init
             onInit: function () {
             },
             onTransitionStart: function (swiper) {
+                activeIndex = swiper.activeIndex;
             },
 
             onTransitionEnd: function (swiper) {
-                app.mySwiper.lockSwipes();
+                if( activeIndex != swiper.activeIndex ){
+                    app.mySwiper.lockSwipes();
+                    that.siblings('.pointer').hide();
+                }
+
             }
         });
 
@@ -127,6 +133,7 @@ var app = {
                     //  delay play not working on android, must manual control
                     setTimeout(function () {
                         scene.addClass('played');
+
                         $('.bottom').addClass('played');
                         scene.find('video')[0].play();
                     }, 1100);
@@ -143,6 +150,7 @@ var app = {
                 var video = scene.find('video');
                 var videoTemp = video[0].outerHTML;
                 that.addClass('end-paly');
+                that.siblings('.pointer').show()
                 //paly audeo
                 $('#music')[0].pause();
                 $('#music')[0].play();

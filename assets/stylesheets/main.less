@@ -194,22 +194,17 @@ input {
       animation: left 1s forwards infinite;
     }
 
-    .triangle img:nth-child(4){
-      top: 20px;
+    .pointer{
+      position: absolute;
+      top: 658px/2;
+      z-index: 999;
       left: 162px;
-      opacity: 0;
-
+      display: none;
+      animation: down 1s infinite;
     }
 
     .end-paly.triangle{
-      img{
         display: none;
-      }
-      img:nth-child(4){
-        opacity: 1;
-        display: block;
-        animation: down 1s infinite;
-      }
     }
 
     .leftLine {
@@ -262,7 +257,7 @@ input {
   }
   .triangle{
     animation: fadeIn 3s forwards 1;
-    animation-delay: 1s;
+    animation-delay: 3s;
   }
 }
 
