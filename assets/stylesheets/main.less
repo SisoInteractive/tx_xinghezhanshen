@@ -170,7 +170,46 @@ input {
       left: 0;
       right: 0;
       top: 618px/2;
-      animation: down 1.3s forwards infinite;
+//      animation: down 1.3s forwards infinite;
+
+      opacity: 0;
+      img{
+        position: absolute;
+      }
+    }
+
+    .triangle img:nth-child(1){
+      top: -10px;
+      left: 148px;
+    }
+    .triangle img:nth-child(2){
+      top: 14px;
+      left: 103px;
+      animation: right 1s forwards infinite;
+    }
+
+    .triangle img:nth-child(3){
+      top: 14px;
+      left: 244px;
+      animation: left 1s forwards infinite;
+    }
+
+    .triangle img:nth-child(4){
+      top: 20px;
+      left: 162px;
+      opacity: 0;
+
+    }
+
+    .end-paly.triangle{
+      img{
+        display: none;
+      }
+      img:nth-child(4){
+        opacity: 1;
+        display: block;
+        animation: down 1s infinite;
+      }
     }
 
     .leftLine {
@@ -205,6 +244,32 @@ input {
     opacity: 1;
   }
 }
+.fadeIn{
+  opacity: 0;
+}
+.swiper-slide-active{
+  .fadeIn{
+    animation: fadeIn 2s forwards 1;
+  }
+  .title img:nth-child(1){
+    animation-delay: 2s;
+  }
+  .title img:nth-child(2){
+    animation-delay: 1000ms;
+  }
+  .title img:nth-child(3){
+    animation-delay: 1400ms;
+  }
+  .triangle{
+    animation: fadeIn 3s forwards 1;
+    animation-delay: 1s;
+  }
+}
+
+.triangle{
+  position: relative;
+}
+
 
 .scene.active {
   footer {
@@ -410,15 +475,47 @@ input {
   }
 }
 
-@keyframes down {
+@keyframes left {
   0% {
-    transform: translate3d(0, -35px, 0) scale(1.2,1.2);
+    transform: translate3d(20px, 0px, 0) scale(1.2,1.2);
     opacity: 1;
   }
 
   100% {
     transform: translate3d(0, 0, 0) scale(1,1);;
     opacity: .0;
+  }
+}
+@keyframes right {
+  0% {
+    transform: translate3d(-20px, 0px, 0) scale(1.2,1.2);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) scale(1,1);;
+    opacity: .0;
+  }
+}
+
+@keyframes down {
+  0% {
+    transform: translate3d(0px, 0px, 0) scale(1.1,1.1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(0, -20px, 0) scale(1,1);;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
   }
 }
 

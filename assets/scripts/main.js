@@ -21,20 +21,6 @@ var app = {
             }
         }
 
-        //loading music
-        var musicloaded = true;
-        //var music=document.getElementById("music");
-        //music.onloadeddata = function() {
-        //    alert()
-        //    console.log("Browser has loaded the current frame");
-        //}
-        //music.addEventListener("loadeddata", function(){
-        //    musicloaded = true;
-        //    if (checkIsAllMainImagesLoaded() && isLoaded == false ) {
-        //        goMainProcess();
-        //    };
-        //});
-
         //  load each img
         for (var i = 0; i < imgArr.length; i++) {
             var curImg = imgArr[i];
@@ -48,7 +34,7 @@ var app = {
                     loadedAmounts++;
                     imgArr[this.index].src = this.src;
                     /* check img load progress */
-                    if (checkIsAllMainImagesLoaded() && isLoaded == false && musicloaded ) {
+                    if (checkIsAllMainImagesLoaded() && isLoaded == false  ) {
                         goMainProcess();
                     }
                 };
@@ -106,6 +92,7 @@ var app = {
             },
 
             onTransitionEnd: function (swiper) {
+                app.mySwiper.lockSwipes();
             }
         });
 
@@ -127,13 +114,6 @@ var app = {
             var that = $(this);
             var scene = that.parents('.scene');
             var video = scene.find('video');
-            ////  remove video controls
-            //if (video[0].hasAttribute("controls")) {
-            //    video[0].removeAttribute("controls")
-            //} else {
-            //    video[0].setAttribute("controls","controls")
-            //}
-
             var canPlay = true;
 
             //  bind play video
@@ -162,7 +142,7 @@ var app = {
                 var scene = that.parents('.scene');
                 var video = scene.find('video');
                 var videoTemp = video[0].outerHTML;
-
+                that.addClass('end-paly');
                 //paly audeo
                 $('#music')[0].pause();
                 $('#music')[0].play();
@@ -177,8 +157,8 @@ var app = {
 
                     setTimeout(function () {
                         app.mySwiper.unlockSwipes();
-                        app.mySwiper.slideTo(index+1, 300, false);
-                        app.mySwiper.lockSwipes();
+                        //app.mySwiper.slideTo(index+1, 300, false);
+                        //app.mySwiper.lockSwipes();
                         if (index == 2) { $('.bottom').fadeOut(); }
 
                         setTimeout(function () {
@@ -208,10 +188,4 @@ $(function (){
     app.preload();
     console.log('app started success...');
 
-    //setTimeout(function () {
-    //    $('.scene01').addClass('active');
-    //    setTimeout(function () {
-    //        $('.scene01').addClass('played');
-    //    }, 1300);
-    //}, 2500);
 });
