@@ -31,6 +31,16 @@ span {
 input {
   outline: none;
 }
+.myVideo {
+  bottom: 0;
+  top: 0;
+  right: 0;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+  border: none;
+}
 /* swiper */
 .wrapper {
   position: relative;
