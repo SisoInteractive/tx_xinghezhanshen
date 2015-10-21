@@ -126,6 +126,7 @@ var app = {
             var scene = that.parents('.scene');
             var video = scene.find('video');
             var canPlay = true;
+            var frequency = 1;
 
             //  bind play video
             that.on('touchend', function () {
@@ -154,36 +155,42 @@ var app = {
                 var scene = that.parents('.scene');
                 var video = scene.find('video');
                 var videoTemp = video[0].outerHTML;
-                that.addClass('end-paly');
-                that.siblings('.pointer').show()
-                //paly audeo
-                $('#music')[0].pause();
-                $('#music')[0].play();
+                if( frequency == 2 ){
+                    that.addClass('end-paly');
+                    that.siblings('.pointer').show()
+                    //paly audeo
+                    $('#music')[0].pause();
+                    $('#music')[0].play();
 
-                //  remove video target
-                video.remove();
+                    //  remove video target
+                    video.remove();
 
-                //  jump to next scene, restore video target
-                setTimeout(function () {
-                    scene.removeClass('active played').addClass('leave');
-                    $('.bottom').removeClass('played');
-
+                    //  jump to next scene, restore video target
                     setTimeout(function () {
-                        app.mySwiper.unlockSwipes();
-                        //app.mySwiper.slideTo(index+1, 300, false);
-                        //app.mySwiper.lockSwipes();
-                        if (index == 2) { $('.bottom').fadeOut(); }
+                        scene.removeClass('active played').addClass('leave');
+                        $('.bottom').removeClass('played');
 
                         setTimeout(function () {
-                            canPlay = true;
-                            scene.find('main').append($(videoTemp));
+                            app.mySwiper.unlockSwipes();
+                            //app.mySwiper.slideTo(index+1, 300, false);
+                            //app.mySwiper.lockSwipes();
+                            if (index == 2) { $('.bottom').fadeOut(); }
 
-                            //  bind play end hanler again
-                            that.parents('.scene').find('video').on('ended', videoPlayEndHandler);
+                            setTimeout(function () {
+                                canPlay = true;
+                                scene.find('main').append($(videoTemp));
 
-                        }, 1100);
-                    }, 2000);
-                }, 400);
+                                //  bind play end hanler again
+                                that.parents('.scene').find('video').on('ended', videoPlayEndHandler);
+
+                            }, 1100);
+                        }, 2000);
+                    }, 400);
+                }
+                else{
+                    frequency++;
+                    scene.find('video')[0].play();
+                }
             };
 
 
